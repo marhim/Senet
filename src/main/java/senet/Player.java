@@ -2,22 +2,26 @@ package senet;
 
 public class Player {
     private static int playerNumber = 1;
-    private static final String[] TOKEN_TEMPLATES = {"X", "O"};
+    private static final String[] TOKEN_TEMPLATES = {"O", "X"};
     private String name;
     private String token;
 
     public Player() {
-        this("Player " + playerNumber, TOKEN_TEMPLATES[(playerNumber - 1) % 2]);
+        this("Player " + playerNumber, getNextToken());
     }
 
     public Player(String name) {
-        this(name, TOKEN_TEMPLATES[(playerNumber - 1) % 2]);
+        this(name, getNextToken());
     }
 
     public Player(String name, String token) {
         this.name = name;
         this.token = token;
         playerNumber++;
+    }
+
+    private static String getNextToken() {
+        return TOKEN_TEMPLATES[playerNumber % 2];
     }
 
     public String getName() {
